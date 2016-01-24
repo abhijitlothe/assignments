@@ -4,20 +4,21 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour 
 {
+	#region inspector variables
 	public Button StartButton;
 	public Text   ScoreText;
-
-	private int _score = 0;
+	public Text	  BestScoreText;
+	#endregion
 
 	// Use this for initialization
 	void Start () 
 	{
 		GameController.Instance.OnBirdDied += OnBirdDied;
-		GameController.Instance.OnBirdSurvivedObstacle += OnBirdSurvivedObstacle;
 		Debug.Assert(StartButton != null);
 		Debug.Assert(ScoreText != null);
 		StartButton.gameObject.SetActive(true);
 		ScoreText.transform.parent.gameObject.SetActive(false);
+		BestScoreText.transform.parent.gameObject.SetActive(false);
 	}
 
 	void OnDestroy()
@@ -25,30 +26,22 @@ public class GameUI : MonoBehaviour
 		if(GameController.Instance != null)
 		{
 			GameController.Instance.OnBirdDied -= OnBirdDied;
-			GameController.Instance.OnBirdSurvivedObstacle -= OnBirdSurvivedObstacle;
 		}
 	}
 
 	public void OnBirdDied()
 	{
-		if(StartButton != null)
-		{
-			StartButton.GetComponentInChildren<Text>().text = "Start Again";
-			StartButton.gameObject.SetActive(true);
-		}
+		StartButton.GetComponentInChildren<Text>().text = "Start Again";
+		StartButton.gameObject.SetActive(true);
 	}
 
-	public void OnBirdSurvivedObstacle()
-	{
-		++_score;
-		UpdateScoreText();
-	}
 
-	public void StartGame()
+	public void StartGame(int score, int bestScore)
 	{
-		_score = 0;
 		ScoreText.transform.parent.gameObject.SetActive(true);
-		UpdateScoreText();
+		BestScoreText.transform.parent.gameObject.SetActive(true);
+		SetBestScore(bestScore);
+		UpdateScoreText(score);
 		StartButton.gameObject.SetActive(false);
 	}
 
@@ -57,9 +50,13 @@ public class GameUI : MonoBehaviour
 		GameController.Instance.OnStartGame();
 	}
 
-	private void UpdateScoreText()
+	public void UpdateScoreText(int score)
 	{
-		ScoreText.text = _score.ToString("N0");
+		ScoreText.text = score.ToString("N0");
 	}
 
+	public void SetBestScore(int score)
+	{
+		BestScoreText.text = score.ToString("N0");
+	}
 }

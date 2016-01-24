@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A7DA9EFA-0141-86F9-9EB3-EAF41BED1270}</ProjectGuid>
+    <ProjectGuid>{E3EF6E53-88BE-20EB-65C7-C65330B49779}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -46,16 +46,16 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BirdController.cs" />
+     <Compile Include="Assets\Scripts\DangerZone.cs" />
      <Compile Include="Assets\Scripts\EffectsController.cs" />
      <Compile Include="Assets\Scripts\ExplodeBirdEffect.cs" />
-     <Compile Include="Assets\Scripts\FireShots.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameUI.cs" />
      <Compile Include="Assets\Scripts\KillBird.cs" />
-     <Compile Include="Assets\Scripts\Obstacle.cs" />
-     <Compile Include="Assets\Scripts\ObstacleGenerator.cs" />
-     <Compile Include="Assets\Scripts\ObstacleMover.cs" />
      <Compile Include="Assets\Scripts\RocketController.cs" />
+     <Compile Include="Assets\Scripts\Turret.cs" />
+     <Compile Include="Assets\Scripts\TurretGenerator.cs" />
+     <Compile Include="Assets\Scripts\TurretMover.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity 5.3.1f1/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

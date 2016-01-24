@@ -15,11 +15,8 @@ public class BirdController : MonoBehaviour
 		}
 	}
 
-	private float _camHeight;
-
 	void Start()
 	{
-		_camHeight =  2 * Camera.main.orthographicSize;
 		GameController.Instance.OnRocketHitBird += (bird)=> bird.gameObject.SetActive(false);
 	}
 
@@ -46,10 +43,11 @@ public class BirdController : MonoBehaviour
 			Bird.AddForce(new Vector2(0, 300));
 		}
 
-		if(AmIOffScreen())
+		if(AmIBelowTheScreen())
 		{
 			GameController.Instance.RaiseOnBirdFellOff(this.gameObject);
 			gameObject.SetActive(false);
+
 		}
 			
 	}
@@ -58,14 +56,15 @@ public class BirdController : MonoBehaviour
 	{
 		if(collider.CompareTag("Pillar") || collider.CompareTag("Cannon"))
 		{
+			gameObject.SetActive(false);
 			GameController.Instance.RaiseBirdDied();
 		}
 	}
 
 
-	bool AmIOffScreen()
+	bool AmIBelowTheScreen()
 	{
-		if((Bird.gameObject.transform.position.y + Size.y/2) < -_camHeight)
+		if((Bird.gameObject.transform.position.y + Size.y/2) < -GameController.Instance.ViewportHeight/2)
 		{
 			return true;
 		}
