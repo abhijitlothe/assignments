@@ -39,8 +39,11 @@ public class BirdController : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			Bird.velocity = Vector2.zero;
-			Bird.AddForce(new Vector2(0, 300));
+			Jump();
+		}
+		else if(Input.GetMouseButtonDown(0))
+		{
+			Jump();
 		}
 
 		if(AmIBelowTheScreen())
@@ -50,6 +53,12 @@ public class BirdController : MonoBehaviour
 
 		}
 			
+	}
+
+	void Jump()
+	{
+		Bird.velocity = Vector2.zero;
+		Bird.AddForce(new Vector2(0, 300));
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)

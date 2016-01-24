@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
 	public Button StartButton;
 	public Text   ScoreText;
 	public Text	  BestScoreText;
+	public GameObject   InstructionsContainer;
 	#endregion
 
 	// Use this for initialization
@@ -33,6 +34,7 @@ public class GameUI : MonoBehaviour
 	{
 		StartButton.GetComponentInChildren<Text>().text = "Start Again";
 		StartButton.gameObject.SetActive(true);
+		InstructionsContainer.gameObject.SetActive(true);
 	}
 
 
@@ -43,6 +45,7 @@ public class GameUI : MonoBehaviour
 		SetBestScore(bestScore);
 		UpdateScoreText(score);
 		StartButton.gameObject.SetActive(false);
+		InstructionsContainer.gameObject.SetActive(false);
 	}
 
 	public void OnStartButtonClicked()
